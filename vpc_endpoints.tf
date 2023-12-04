@@ -29,8 +29,7 @@ resource "aws_vpc_endpoint" "ecr_dkr_endpoint" {
     aws_security_group.ecr_endpoint_vpce_sg.id,
   ]
 
-  count          = var.az_count
-  subnet_ids      = element(aws_subnet.private_subnet.*.id, count.index)
+  subnet_ids      = aws_subnet.private_subnet.*.id
   private_dns_enabled = true
 }
 
@@ -43,8 +42,7 @@ resource "aws_vpc_endpoint" "ecr_api_endpoint" {
     aws_security_group.ecr_endpoint_vpce_sg.id,
   ]
 
-  count          = var.az_count
-  subnet_ids      = element(aws_subnet.private_subnet.*.id, count.index)
+  subnet_ids      = aws_subnet.private_subnet.*.id
   private_dns_enabled = true
 }
 
@@ -57,7 +55,6 @@ resource "aws_vpc_endpoint" "ecr_logs_endpoint" {
     aws_security_group.ecr_endpoint_vpce_sg.id,
   ]
 
-  count          = var.az_count
-  subnet_ids      = element(aws_subnet.private_subnet.*.id, count.index)
+  subnet_ids      = aws_subnet.private_subnet.*.id
   private_dns_enabled = true
 }
