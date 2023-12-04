@@ -17,3 +17,8 @@ variable "vpc_main_flowlog_role_name" {
   description = "VPC main flowlog role name"
   //default     = "10.1.0.0/16"
 }
+
+variable "s3_enpoint_service_name" {
+  description = "s3_enpoint_service_name"
+  //default = ""
+}

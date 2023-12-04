@@ -1,6 +1,6 @@
 resource "aws_vpc_endpoint" "s3_endpoint" {
   vpc_id       = aws_vpc.main.id
-  service_name = "com.amazonaws.us-west-2.s3"
+  service_name = var.s3_enpoint_service_name
 }
 
 resource "aws_vpc_endpoint_route_table_association" "s3_endpoint_route_table_association" {
