@@ -22,3 +22,8 @@ variable "s3_enpoint_service_name" {
   description = "s3_enpoint_service_name"
   //default = ""
 }
+
+variable "dynamodb_enpoint_service_name" {
+  description = "dynamodb_enpoint_service_name"
+  //default = ""
+}
