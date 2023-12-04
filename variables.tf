@@ -1,11 +1,11 @@
 variable "az_count" {
   description = "Number of AZs to cover in a given region"
-  //default     = "2"
+  //default     = ""
 }
 
 variable "cidr_block" {
   description = "VPC Cidr range"
-  //default     = "10.1.0.0/16"
+  //default     = ""
 }
 
 variable "app_port" {
@@ -15,15 +15,30 @@ variable "app_port" {
 
 variable "vpc_main_flowlog_role_name" {
   description = "VPC main flowlog role name"
-  //default     = "10.1.0.0/16"
+  //default     = ""
 }
 
-variable "s3_enpoint_service_name" {
-  description = "s3_enpoint_service_name"
+variable "s3_endpoint_service_name" {
+  description = "s3_endpoint_service_name"
   //default = ""
 }
 
-variable "dynamodb_enpoint_service_name" {
-  description = "dynamodb_enpoint_service_name"
+variable "dynamodb_endpoint_service_name" {
+  description = "dynamodb_endpoint_service_name"
+  //default = ""
+}
+
+variable "ecr_dkr_endpoint_service_name" {
+  description = "ecr_dkr_endpoint_service_name"
+  //default = ""
+}
+
+variable "ecr_api_endpoint_service_name" {
+  description = "ecr_api_endpoint_service_name"
+  //default = ""
+}
+
+variable "ecr_logs_endpoint_service_name" {
+  description = "ecr_logs_endpoint_service_name"
   //default = ""
 }
