@@ -39,8 +39,8 @@ resource "aws_route" "internet_access" {
 # Create a NAT gateway with an Elastic IP for each private subnet to get internet connectivity
 resource "aws_eip" "elastic_ip" {
   count      = var.az_count
-  domain        = true
-  depends_on = [aws_internet_gateway.gw]
+  vpc        = true
+  depends_on = [aws_internet_gateway.internet_gateway]
 }
 
 resource "aws_nat_gateway" "nat_gateway" {
