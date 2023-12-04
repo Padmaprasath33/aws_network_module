@@ -4,7 +4,7 @@ variable "az_count" {
 }
 
 variable "cidr_block" {
-  description = "VPV Cidr range"
+  description = "VPC Cidr range"
   //default     = "10.1.0.0/16"
 }
 
