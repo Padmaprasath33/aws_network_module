@@ -23,7 +23,7 @@ data "aws_iam_policy_document" "assume_role" {
 }
 
 resource "aws_iam_role" "vpc_main_flowlog_role" {
-  name               = "example"
+  name               = var.vpc_main_flowlog_role_name
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 

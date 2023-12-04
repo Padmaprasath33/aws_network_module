@@ -12,3 +12,8 @@ variable "app_port" {
   description = "Port exposed by the docker image to redirect traffic to"
   //default     = 80
 }
+
+variable "vpc_main_flowlog_role_name" {
+  description = "VPC main flowlog role name"
+  //default     = "10.1.0.0/16"
+}
