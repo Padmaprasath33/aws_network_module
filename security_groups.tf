@@ -1,5 +1,5 @@
 resource "aws_security_group" "alb_sg" {
-  name        = "application-load-balancer-security-group"
+  name        = var.alb_sg_name
   description = "controls access to the ALB"
   vpc_id      = aws_vpc.main.id
 
@@ -20,7 +20,7 @@ resource "aws_security_group" "alb_sg" {
 
 # Traffic to the ECS cluster should only come from the ALB
 resource "aws_security_group" "ecs_tasks" {
-  name        = "ecs-tasks-security-group"
+  name        = var.ecs_tasks_sg_name
   description = "allow inbound access from the ALB only"
   vpc_id      = aws_vpc.main.id
 
@@ -40,7 +40,7 @@ resource "aws_security_group" "ecs_tasks" {
 }
 
 resource "aws_security_group" "ecr_endpoint_vpce_sg" {
-  name   = "ecr_endpoint_vpce_sg"
+  name   = var.ecr_endpoint_vpce_sg_name
   vpc_id = aws_vpc.main.id
   ingress {
     from_port   = 443

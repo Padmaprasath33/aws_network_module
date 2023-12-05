@@ -52,3 +52,18 @@ variable "ecr_logs_endpoint_service_name" {
   description = "ecr_logs_endpoint_service_name"
   //default = ""
 }
+
+variable "alb_sg_name" {
+  description = "alb_sg_name"
+  //default = ""
+}
+
+variable "ecs_tasks_sg_name" {
+  description = "ecs_tasks_sg_name"
+  //default = ""
+}
+
+variable "ecr_endpoint_vpce_sg_name" {
+  description = "ecr_endpoint_vpce_sg_name"
+  //default = ""
+}
