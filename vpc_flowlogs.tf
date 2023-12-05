@@ -6,7 +6,7 @@ resource "aws_flow_log" "vpc_main_flowlogs" {
 }
 
 resource "aws_cloudwatch_log_group" "vpc_main_flowlog_group" {
-  name = "vpc_main_flowlog_group"
+  name = var.vpc_main_flowlog_group_name
 }
 
 data "aws_iam_policy_document" "assume_role" {
@@ -44,7 +44,7 @@ data "aws_iam_policy_document" "vpc_main_flowlog_policy" {
 }
 
 resource "aws_iam_role_policy" "vpc_main_flowlogs" {
-  name   = "example"
+  name   = var.vpc_main_flowlog_policy_name
   role   = aws_iam_role.vpc_main_flowlog_role.id
   policy = data.aws_iam_policy_document.vpc_main_flowlog_policy.json
 }

@@ -18,6 +18,16 @@ variable "vpc_main_flowlog_role_name" {
   //default     = ""
 }
 
+variable "vpc_main_flowlog_policy_name" {
+  description = "VPC main flowlog policy name"
+  //default     = ""
+}
+
+variable "vpc_main_flowlog_group_name" {
+  description = "VPC main flowlog group name"
+  //default     = ""
+}
+
 variable "s3_endpoint_service_name" {
   description = "s3_endpoint_service_name"
   //default = ""
