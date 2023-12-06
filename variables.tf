@@ -18,6 +18,11 @@ variable "app_port" {
   //default     = 80
 }
 
+variable "elb_sg_ingress_ports" {
+  type    = list(number)
+  default = [80, 443, 8080]
+}
+
 /*variable "vpc_main_flowlog_role_name" {
   description = "VPC main flowlog role name"
   //default     = ""
