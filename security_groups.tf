@@ -48,6 +48,12 @@ resource "aws_security_group" "ecr_endpoint_vpce_sg" {
     protocol    = "tcp"
     cidr_blocks = [aws_vpc.main.cidr_block]
   }
+  ingress {
+    protocol        = "tcp"
+    from_port       = 0
+    to_port         = 65535
+    cidr_blocks     = [aws_vpc.main.cidr_block]
+  }
 }
 
 /////////////////////////////////////////////////////////////
