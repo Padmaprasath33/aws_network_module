@@ -25,3 +25,7 @@ output "ecs_tasks_sg_id" {
 output "ecr_endpoint_vpce_sg_id" {
   value = aws_security_group.ecr_endpoint_vpce_sg.id
 }
+
+output "application_elb_sg" {
+  value = aws_security_group.application_elb_sg.id
+}
