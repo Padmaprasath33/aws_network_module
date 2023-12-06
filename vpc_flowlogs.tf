@@ -6,7 +6,7 @@ resource "aws_flow_log" "vpc_main_flowlogs" {
 }
 
 resource "aws_cloudwatch_log_group" "vpc_main_flowlog_group" {
-  //name = var.vpc_main_flowlog_group_name
+  name = "cohort_vpc_flowlog_group_${var.region}"
 }
 
 data "aws_iam_policy_document" "assume_role" {
