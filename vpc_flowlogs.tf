@@ -23,7 +23,7 @@ data "aws_iam_policy_document" "assume_role" {
 }
 
 resource "aws_iam_role" "vpc_main_flowlog_role" {
-  name               = var.vpc_main_flowlog_role_name
+  name               = "VPC-main-flowlog-role-name-${var.region}"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
@@ -44,7 +44,7 @@ data "aws_iam_policy_document" "vpc_main_flowlog_policy" {
 }
 
 resource "aws_iam_role_policy" "vpc_main_flowlogs" {
-  name   = var.vpc_main_flowlog_policy_name
+  name   = "VPC-main-flowlog-policy-name-${var.region}"
   role   = aws_iam_role.vpc_main_flowlog_role.id
   policy = data.aws_iam_policy_document.vpc_main_flowlog_policy.json
 }

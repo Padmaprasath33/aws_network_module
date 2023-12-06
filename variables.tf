@@ -1,3 +1,8 @@
+variable "region" {
+  description = "AWS region"
+  //default     = "us-east-1"
+}
+
 variable "az_count" {
   description = "Number of AZs to cover in a given region"
   //default     = ""
@@ -13,7 +18,7 @@ variable "app_port" {
   //default     = 80
 }
 
-variable "vpc_main_flowlog_role_name" {
+/*variable "vpc_main_flowlog_role_name" {
   description = "VPC main flowlog role name"
   //default     = ""
 }
@@ -52,3 +57,4 @@ variable "ecr_logs_endpoint_service_name" {
   description = "ecr_logs_endpoint_service_name"
   //default = ""
 }
+*/
