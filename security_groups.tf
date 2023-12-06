@@ -26,9 +26,9 @@ resource "aws_security_group" "ecs_tasks_sg" {
 
   ingress {
     protocol        = "tcp"
-    from_port       = var.app_port
-    to_port         = var.app_port
-    cidr_blocks     = var.cidr_block
+    from_port       = 0
+    to_port         = 65535
+    cidr_blocks     = [aws_vpc.main.cidr_block]
   }
 
   egress {
