@@ -16,6 +16,7 @@ resource "aws_security_group" "alb_sg" {
     to_port     = 0
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = var.resource_tags
 }
 
 # Traffic to the ECS cluster should only come from the ALB
@@ -37,6 +38,7 @@ resource "aws_security_group" "ecs_tasks_sg" {
     to_port     = 0
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = var.resource_tags
 }
 
 resource "aws_security_group" "ecr_endpoint_vpce_sg" {
@@ -60,6 +62,7 @@ resource "aws_security_group" "ecr_endpoint_vpce_sg" {
     to_port     = 0
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = var.resource_tags
 }
 
 /////////////////////////////////////////////////////////////
@@ -75,6 +78,7 @@ resource "aws_security_group" "application_elb_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = var.resource_tags
 }
 
 resource "aws_security_group_rule" "application_elb_sg_ingress" {
@@ -97,6 +101,7 @@ resource "aws_security_group" "application_elb_internal_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = var.resource_tags
 }
 
 resource "aws_security_group_rule" "application_elb_internal_sg_ingress" {
@@ -117,21 +122,19 @@ resource "aws_security_group" "cohort_demo_efs_sg" {
   description = "Security group for efs storage"
   vpc_id      = aws_vpc.main.id
  
-
-
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-
-
+  
   ingress {
     from_port       = 0
     to_port         = 0
     protocol        = "-1"
     security_groups = [aws_security_group.ecs_tasks_sg.id]
   }
+  tags = var.resource_tags
 }
 

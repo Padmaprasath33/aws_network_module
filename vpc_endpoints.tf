@@ -1,6 +1,7 @@
 resource "aws_vpc_endpoint" "s3_endpoint" {
   vpc_id       = aws_vpc.main.id
   service_name = "com.amazonaws.${var.region}.s3"
+  tags = var.resource_tags
 }
 
 resource "aws_vpc_endpoint_route_table_association" "s3_endpoint_route_table_association" {
@@ -12,6 +13,7 @@ resource "aws_vpc_endpoint_route_table_association" "s3_endpoint_route_table_ass
 resource "aws_vpc_endpoint" "dynamodb_endpoint" {
   vpc_id       = aws_vpc.main.id
   service_name = "com.amazonaws.${var.region}.dynamodb"
+  tags = var.resource_tags
 }
 
 resource "aws_vpc_endpoint_route_table_association" "dynamodb_endpoint_route_table_association" {
@@ -31,6 +33,7 @@ resource "aws_vpc_endpoint" "ecr_dkr_endpoint" {
 
   subnet_ids      = aws_subnet.private_subnet.*.id
   private_dns_enabled = true
+  tags = var.resource_tags
 }
 
 resource "aws_vpc_endpoint" "ecr_api_endpoint" {
@@ -44,6 +47,7 @@ resource "aws_vpc_endpoint" "ecr_api_endpoint" {
 
   subnet_ids      = aws_subnet.private_subnet.*.id
   private_dns_enabled = true
+  tags = var.resource_tags
 }
 
 resource "aws_vpc_endpoint" "ecr_logs_endpoint" {
@@ -57,4 +61,5 @@ resource "aws_vpc_endpoint" "ecr_logs_endpoint" {
 
   subnet_ids      = aws_subnet.private_subnet.*.id
   private_dns_enabled = true
+  tags = var.resource_tags
 }

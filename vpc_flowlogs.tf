@@ -3,10 +3,12 @@ resource "aws_flow_log" "vpc_main_flowlogs" {
   log_destination = aws_cloudwatch_log_group.vpc_main_flowlog_group.arn
   traffic_type    = "ALL"
   vpc_id          = aws_vpc.main.id
+  tags = var.resource_tags
 }
 
 resource "aws_cloudwatch_log_group" "vpc_main_flowlog_group" {
   name = "cohort-vpc-flowlog-group"
+  tags = var.resource_tags
 }
 
 data "aws_iam_policy_document" "assume_role" {
@@ -25,6 +27,7 @@ data "aws_iam_policy_document" "assume_role" {
 resource "aws_iam_role" "vpc_main_flowlog_role" {
   name               = "2191420-vpc-main-flowlog-role"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
+  tags = var.resource_tags
 }
 
 data "aws_iam_policy_document" "vpc_main_flowlog_policy" {
