@@ -102,7 +102,7 @@ resource "aws_security_group" "cohort_demo_efs_sg" {
     from_port       = 0
     to_port         = 0
     protocol        = "-1"
-    security_groups = [aws_security_group.ecs_tasks_sg]
+    security_groups = [aws_security_group.ecs_tasks_sg.id]
   }
 }
 
