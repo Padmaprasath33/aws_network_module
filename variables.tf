@@ -3,6 +3,11 @@ variable "region" {
   //default     = "us-east-1"
 }
 
+variable "account_id" {
+  description = "AWS account ID"
+  //default     = "us-east-1"
+}
+
 variable "az_count" {
   description = "Number of AZs to cover in a given region"
   //default     = ""
