@@ -5,7 +5,7 @@ resource "aws_sns_topic" "codepipeline_manual_approval" {
 resource "aws_sns_topic_subscription" "codepipeline_manual_approval" {
   topic_arn = aws_sns_topic.codepipeline_manual_approval.arn
   protocol  = "email"
-  endpoint  = "2191420@cognizant.com"
+  endpoint  = "padmaprasath.s@cognizant.com"
 }
 
 
