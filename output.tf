@@ -30,6 +30,10 @@ output "application_elb_sg" {
   value = aws_security_group.application_elb_sg.id
 }
 
+output "application_elb_internal_sg" {
+  value = aws_security_group.application_elb_internal_sg.id
+}
+
 output "cohort_demo_efs_sg" {
   value = aws_security_group.cohort_demo_efs_sg.id
 }

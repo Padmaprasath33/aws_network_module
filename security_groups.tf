@@ -76,8 +76,23 @@ resource "aws_security_group_rule" "application_elb_sg_ingress" {
   from_port         = var.elb_sg_ingress_ports[count.index]
   to_port           = var.elb_sg_ingress_ports[count.index]
   protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = [aws_vpc.main.cidr_block]
   security_group_id = aws_security_group.application_elb_sg.id
+} 
+
+resource "aws_security_group" "application_elb_internal_sg" {
+  vpc_id = aws_vpc.main.id
+  name   = "application_elb_internal_sg"
+}
+
+resource "aws_security_group_rule" "application_elb_internal_sg_ingress" {
+  count             = length(var.elb_sg_ingress_ports)
+  type              = "ingress"
+  from_port         = var.elb_sg_ingress_ports[count.index]
+  to_port           = var.elb_sg_ingress_ports[count.index]
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.application_elb_internal_sg.id
 } 
 
 resource "aws_security_group" "cohort_demo_efs_sg" {
