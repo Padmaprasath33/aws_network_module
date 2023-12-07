@@ -29,3 +29,7 @@ output "ecr_endpoint_vpce_sg_id" {
 output "application_elb_sg" {
   value = aws_security_group.application_elb_sg.id
 }
+
+output "cohort_demo_efs_sg" {
+  value = aws_security_group.cohort_demo_efs_sg.id
+}
