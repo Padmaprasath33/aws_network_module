@@ -6,7 +6,7 @@ resource "aws_flow_log" "vpc_main_flowlogs" {
 }
 
 resource "aws_cloudwatch_log_group" "vpc_main_flowlog_group" {
-  name = "cohort_vpc_flowlog_group_${var.region}"
+  name = "cohort-vpc-flowlog-group"
 }
 
 data "aws_iam_policy_document" "assume_role" {
@@ -23,7 +23,7 @@ data "aws_iam_policy_document" "assume_role" {
 }
 
 resource "aws_iam_role" "vpc_main_flowlog_role" {
-  name               = "VPC-main-flowlog-role-name-${var.region}"
+  name               = "2191420-vpc-main-flowlog-role"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
@@ -44,7 +44,7 @@ data "aws_iam_policy_document" "vpc_main_flowlog_policy" {
 }
 
 resource "aws_iam_role_policy" "vpc_main_flowlogs" {
-  name   = "VPC-main-flowlog-policy-name-${var.region}"
+  name   = "2191420-vpc-main-flowlog-policy"
   role   = aws_iam_role.vpc_main_flowlog_role.id
   policy = data.aws_iam_policy_document.vpc_main_flowlog_policy.json
 }
