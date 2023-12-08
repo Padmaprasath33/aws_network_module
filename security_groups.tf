@@ -69,7 +69,7 @@ resource "aws_security_group_rule" "application_elb_internal_sg_ingress" {
   to_port           = var.elb_sg_ingress_ports[count.index]
   protocol          = "tcp"
   cidr_blocks = [aws_vpc.main.cidr_block]
-  source_security_group_id = aws_security_group.ecs_tasks_sg.id
+  //source_security_group_id = aws_security_group.ecs_tasks_sg.id
   security_group_id = aws_security_group.application_elb_internal_sg.id
 } 
 
