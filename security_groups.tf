@@ -100,7 +100,7 @@ resource "aws_security_group" "ecs_backend_tasks_sg" {
 resource "aws_security_group" "ecr_endpoint_vpce_sg" {
   name   = "ecr-endpoint-vpce-security-group"
   vpc_id = aws_vpc.main.id
-  
+
   ingress {
     protocol        = "tcp"
     from_port       = 0
@@ -128,7 +128,7 @@ resource "aws_security_group" "cohort_demo_efs_sg" {
     protocol        = "tcp"
     from_port       = 2049
     to_port         = 2049
-    security_groups = [aws_security_group.ecs_tasks_sg.id, aws_security_group.aws_security_group.ecs_backend_tasks_sg.id]
+    security_groups = [aws_security_group.ecs_tasks_sg.id, aws_security_group.ecs_backend_tasks_sg.id]
   }
 
   egress {
