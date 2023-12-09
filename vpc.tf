@@ -5,7 +5,13 @@ resource "aws_vpc" "main" {
   cidr_block = var.cidr_block
   enable_dns_support = true
   enable_dns_hostnames = true
-  tags = var.resource_tags
+  //tags = var.resource_tags
+  tags = {
+    name        = "2191420-vpc-main"
+    project     = "aws-proserv",
+    environment = "dev"
+    application = "cohort-demo"
+  }
 }
 
 resource "aws_internet_gateway" "internet_gateway" {

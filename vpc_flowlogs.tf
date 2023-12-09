@@ -7,7 +7,7 @@ resource "aws_flow_log" "vpc_main_flowlogs" {
 }
 
 resource "aws_cloudwatch_log_group" "vpc_main_flowlog_group" {
-  name = "cohort-vpc-flowlog-group"
+  name = "2191420-cohort-vpc-flowlog-group"
   tags = var.resource_tags
 }
 

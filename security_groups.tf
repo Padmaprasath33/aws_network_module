@@ -4,7 +4,7 @@ locals {
 
 resource "aws_security_group" "application_elb_sg" {
   vpc_id = aws_vpc.main.id
-  name   = "application_elb_sg"
+  name   = "2191420-application-elb-sg"
 
   egress {
     from_port   = 0
@@ -26,7 +26,7 @@ resource "aws_security_group_rule" "application_elb_sg_ingress" {
 } 
 
 resource "aws_security_group" "ecs_tasks_sg" {
-  name        = "ecs-tasks-security-group"
+  name        = "2191420-ecs-tasks-security-group"
   description = "allow inbound access from the ALB only"
   vpc_id      = aws_vpc.main.id
 
@@ -51,7 +51,7 @@ resource "aws_security_group" "ecs_tasks_sg" {
 
 resource "aws_security_group" "application_elb_internal_sg" {
   vpc_id = aws_vpc.main.id
-  name   = "application_elb_internal_sg"
+  name   = "2191420-application-elb-internal-sg"
 
   egress {
     from_port   = 0
@@ -74,7 +74,7 @@ resource "aws_security_group_rule" "application_elb_internal_sg_ingress" {
 } 
 
 resource "aws_security_group" "ecs_backend_tasks_sg" {
-  name        = "ecs-backend-tasks-security-group"
+  name        = "2191420-ecs-backend-tasks-security-group"
   description = "allow inbound access from the internal ALB only"
   vpc_id      = aws_vpc.main.id
 
@@ -98,7 +98,7 @@ resource "aws_security_group" "ecs_backend_tasks_sg" {
 }
 
 resource "aws_security_group" "ecr_endpoint_vpce_sg" {
-  name   = "ecr-endpoint-vpce-security-group"
+  name   = "2191420-ecr-endpoint-vpce-security-group"
   vpc_id = aws_vpc.main.id
 
   ingress {
@@ -120,7 +120,7 @@ resource "aws_security_group" "cohort_demo_efs_sg" {
   depends_on = [
     aws_security_group.ecs_tasks_sg,
   ]
-  name        = "cohort_demo_efs_security_group"
+  name        = "2191420-cohort-demo-efs-security-group"
   description = "Security group for efs storage"
   vpc_id      = aws_vpc.main.id
   
