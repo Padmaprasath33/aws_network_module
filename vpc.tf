@@ -25,7 +25,7 @@ resource "aws_route" "internet_access" {
   gateway_id             = aws_internet_gateway.internet_gateway.id
 }
 
-/*
+
 //Data source EIP - So commented this block
 resource "aws_eip" "elastic_ip" {
   count      = var.az_count
@@ -33,9 +33,9 @@ resource "aws_eip" "elastic_ip" {
   depends_on = [aws_internet_gateway.internet_gateway]
   tags = var.resource_tags
 }
-*/
 
-data "aws_eip" "elastic_ip_1" {
+
+/*data "aws_eip" "elastic_ip_1" {
   id = "eipalloc-059f31f7bc6943a7f"
   depends_on = [aws_internet_gateway.internet_gateway]
 }
@@ -44,6 +44,7 @@ data "aws_eip" "elastic_ip_2" {
   id = "eipalloc-003aea23366de83e4"
   depends_on = [aws_internet_gateway.internet_gateway]
 }
+*/
 
 
 resource "aws_subnet" "private_subnet" {
