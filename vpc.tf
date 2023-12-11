@@ -25,13 +25,16 @@ resource "aws_route" "internet_access" {
   gateway_id             = aws_internet_gateway.internet_gateway.id
 }
 
-/*resource "aws_eip" "elastic_ip" {
+/*
+//Data source EIP - So commented this block
+resource "aws_eip" "elastic_ip" {
   count      = var.az_count
   domain        = "vpc"
   depends_on = [aws_internet_gateway.internet_gateway]
   tags = var.resource_tags
 }
 */
+
 data "aws_eip" "elastic_ip_1" {
   id = "eipalloc-059f31f7bc6943a7f"
   depends_on = [aws_internet_gateway.internet_gateway]
@@ -60,13 +63,35 @@ resource "aws_subnet" "public_subnet" {
   tags = var.resource_tags
 }
 
-/*resource "aws_nat_gateway" "nat_gateway" {
+/* 
+//Data source EIP - So commented this block
+resource "aws_nat_gateway" "nat_gateway" {
   count         = var.az_count
   subnet_id     = element(aws_subnet.public_subnet.*.id, count.index)
   allocation_id = element(aws_eip.elastic_ip.*.id, count.index)
   tags = var.resource_tags
 }
+
+resource "aws_route_table" "private_route_table" {
+  count  = var.az_count
+  vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = element(aws_nat_gateway.nat_gateway.*.id, count.index)
+  }
+  tags = var.resource_tags
+}
+
+resource "aws_route_table_association" "private_route_table_association" {
+  count          = var.az_count
+  subnet_id      = element(aws_subnet.public_subnet.*.id, count.index)
+  route_table_id = element(aws_route_table.private_route_table.*.id, count.index)
+}
 */
+
+
+/// Nat g/w temporary since data source is used for EIP
 resource "aws_nat_gateway" "nat_gateway_1" {
   subnet_id     = aws_subnet.public_subnet[0].id
   allocation_id = data.aws_eip.elastic_ip_1.id
@@ -78,7 +103,6 @@ resource "aws_nat_gateway" "nat_gateway_2" {
   allocation_id = data.aws_eip.elastic_ip_2.id
   tags = var.resource_tags
 }
-
 
 resource "aws_route_table" "private_route_table_1" {
   //count  = var.az_count
@@ -101,6 +125,7 @@ resource "aws_route_table" "private_route_table_2" {
   }
   tags = var.resource_tags
 }
+
 
 resource "aws_route_table_association" "private_route_table_association_1" {
   //count          = var.az_count
