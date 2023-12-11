@@ -69,13 +69,13 @@ resource "aws_subnet" "public_subnet" {
 */
 resource "aws_nat_gateway" "nat_gateway_1" {
   subnet_id     = aws_subnet.public_subnet[0].id
-  allocation_id = aws_eip.elastic_ip_1.id
+  allocation_id = data.aws_eip.elastic_ip_1.id
   tags = var.resource_tags
 }
 
 resource "aws_nat_gateway" "nat_gateway_2" {
   subnet_id     = aws_subnet.public_subnet[1].id
-  allocation_id = aws_eip.elastic_ip_2.id
+  allocation_id = data.aws_eip.elastic_ip_2.id
   tags = var.resource_tags
 }
 
