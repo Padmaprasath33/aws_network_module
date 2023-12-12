@@ -25,7 +25,7 @@ resource "aws_route" "internet_access" {
   gateway_id             = aws_internet_gateway.internet_gateway.id
 }
 
-
+/*
 //Data source EIP - So commented this block
 resource "aws_eip" "elastic_ip" {
   count      = var.az_count
@@ -33,9 +33,10 @@ resource "aws_eip" "elastic_ip" {
   depends_on = [aws_internet_gateway.internet_gateway]
   tags = var.resource_tags
 }
+*/
 
 
-/*data "aws_eip" "elastic_ip_1" {
+data "aws_eip" "elastic_ip_1" {
   id = "eipalloc-059f31f7bc6943a7f"
   depends_on = [aws_internet_gateway.internet_gateway]
 }
@@ -44,7 +45,7 @@ data "aws_eip" "elastic_ip_2" {
   id = "eipalloc-003aea23366de83e4"
   depends_on = [aws_internet_gateway.internet_gateway]
 }
-*/
+
 
 
 resource "aws_subnet" "private_subnet" {
@@ -64,7 +65,7 @@ resource "aws_subnet" "public_subnet" {
   tags = var.resource_tags
 }
 
-
+/*
 //Data source EIP - So commented this block
 resource "aws_nat_gateway" "nat_gateway" {
   count         = var.az_count
@@ -89,9 +90,9 @@ resource "aws_route_table_association" "private_route_table_association" {
   subnet_id      = element(aws_subnet.public_subnet.*.id, count.index)
   route_table_id = element(aws_route_table.private_route_table.*.id, count.index)
 }
+*/
 
 
-/*
 /// Nat g/w temporary since data source is used for EIP
 resource "aws_nat_gateway" "nat_gateway_1" {
   subnet_id     = aws_subnet.public_subnet[0].id
@@ -139,4 +140,3 @@ resource "aws_route_table_association" "private_route_table_association_2" {
   subnet_id      = aws_subnet.private_subnet[1].id
   route_table_id = aws_route_table.private_route_table_2.id
 }
-*/
